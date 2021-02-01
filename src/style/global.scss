@@ -1,0 +1,44 @@
+$wrapper-color: grey;
+$wallet-color: white;
+
+
+@media screen and (min-width: 1025px) {
+    .wrapper {
+        width: 100%;
+        height: 920px;
+        background-color:$wrapper-color;
+        display:flex;
+        justify-content:center;
+    }
+    
+    .wallet {
+        margin-top:1vh;
+        width:500px;
+        height:920px;
+        background-color:$wallet-color;
+        display:flex;
+        flex-direction:column;
+       align-items:center;
+    }
+    
+    h1 {
+        font-size: 6vh;
+    }
+    
+    p {
+        font-size:1.4vh;
+        color:darkgray;
+    }
+    
+    .cardstack {
+        display:flex;
+        justify-content:center;
+    }
+
+    button {
+        margin-top:3vh;
+       
+    }
+    
+
+}
