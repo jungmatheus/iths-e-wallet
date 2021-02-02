@@ -1,7 +1,8 @@
 <template>
     <div>
-        <div class="img">
-            <img src="../assets/bitcoin card.svg" class="card">
+        <div class="card-template">
+            <p class="cardname">CARDHOLDER NAME</p>
+            <p class="cardvld">VALID THRU</p>
              <p class="number">{{cardNumber}}</p>
              <p class="name">{{cardName}}</p>
              <p class="date">{{vld}}</p>
@@ -19,7 +20,8 @@ export default {
 
        cardNumber: String,
        cardName:  String,
-       vld: String
+       vld: String,
+       ccv: String
        
    }
 
@@ -30,6 +32,43 @@ export default {
 </script>
 
 <style scoped>
+
+      p {
+    font-size:0.6rem;
+}
+
+  
+
+     .cardvld {
+
+    position:absolute;
+    top:6.5rem;
+    left:12rem; 
+    }
+
+    .cardname {
+        position:absolute;
+        top:6.5rem;
+        left:0.8rem;
+    }
+
+    .cardbank {
+        position:absolute;
+        left:0.5rem;
+    }
+
+
+     .card-template {
+    width:270px;
+    height:150px;
+    border-radius:10px;
+    background-color:grey;
+    position:relative; 
+    justify-self:center;  
+   
+    
+    
+}
 
     .img {
         position:relative;
@@ -44,14 +83,14 @@ export default {
 
     .name {
         position: absolute;
-        top:107.5px;
-        left:20px;
+        top:120.5px;
+        left:16px;
     }
 
     .date {
         position: absolute;
-        top:107.5px;
-        left:174px;
+        top:120.5px;
+        left:200px;
     }
 
     .card{ width:15rem; }

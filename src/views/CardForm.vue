@@ -9,19 +9,24 @@
                     <p class="inline">VALID THRU</p> 
                     <p class="inline ccv">CCV</p><br>
                     <input type = "month" class="inline input" v-model="vld" v-on:change="pressedVld">   
-                    <input type="text" class="inline input2">  
+                    <input type="text" class="inline input2" v-model="ccv" v-on:keyup="pressedCcv">  
             </div>
             <p>VENDOR</p>
             <span class="vendor"  v-on:click="showVendor = !showVendor">
+                <p>{{this.currentBank.toUpperCase()}}</p>
                 <p>▼</p>
             </span>
+            
             <ul v-if="showVendor">
-                <li>BITCOIN INC</li>
-                <li>NINJA BANK</li>
-                <li>EVILCORP</li>
-                <li>ROSA BANK</li>
+                
+                <li v-for="item in banks" v-bind:key="item.index"
+                v-on:click="saveBank(item.class)"
+                >{{item.name}}</li>
             </ul>
-            <button>ADD CARD</button>
+        
+            <!-- <router-link to="/" tag="button" v-on:click="addCard">ADD CARD</router-link> -->
+            <button v-on:click="addCard">ADD CARD</button>
+           
     </div>
            
         
@@ -38,7 +43,29 @@ export default {
         name: "",
         vld: "",
         temp : "",
-        temp2: ""
+        temp2: "",
+        ccv: "",
+        vendor: "",
+        banks: [
+            {
+                name: "BITCOIN INC",
+                class: "bitcoin"
+            },
+            {
+                name: "PROLETARIAT BANK",
+                class: "proletariat"
+            },
+            {
+                name: "EVILCORP",
+                class: "evilcorp"
+            },
+            {
+                name: "ROSA BANK",
+                class: "flower"
+            }
+        ],
+        currentBank: ""
+
         
 
     }},
@@ -56,10 +83,7 @@ export default {
             else {
                 this.number = this.temp;
             }
-
-
-    
-        
+ 
         },
 
         pressedName() {
@@ -68,6 +92,35 @@ export default {
 
         pressedVld() {
             this.$emit('vldSent', this.vld);
+        },
+
+        pressedCcv() {
+            this.$emit('ccvSent', this.ccv)
+        },
+
+        saveBank(bank) {
+            this.currentBank = bank;
+            this.showVendor = false;
+        },
+
+        addCard() {
+
+            if(this.currentBank.length !== 0) {
+                 this.$root.cardInfo.push({
+                cardNumber: this.number,
+                cardName: this.name,
+                valid: this.vld,
+                ccv: this.ccv,
+                bank: this.currentBank,
+                logo: this.currentBank + "logo",
+                path: this.currentBank + "card"
+                
+                })
+                this.$router.push({path: "/"})
+                }
+            else {
+                alert("Pick a bank in order to proceed!")
+            }
         }
 
 
@@ -84,6 +137,8 @@ export default {
 <style scoped>
 
 
+
+
 ul {
     list-style: none;
     margin: 0;
@@ -96,8 +151,14 @@ li {
     border: solid 1px black;
     border-radius:5px;
     text-align:center;
+    cursor:pointer;
    
 }
+
+
+
+
+
 
 .vendor {
     width:16rem;
@@ -106,8 +167,9 @@ li {
     border-radius:5px;
     border: solid 1px black;
     display:flex;
+
     justify-content:flex-end;
-    align-items:center;
+    cursor:pointer;
 }
 
 .vendor p {
@@ -134,6 +196,7 @@ li {
     flex-direction: column;
     width:16rem;
     height:20rem;
+     font-family: 'Open Sans Condensed', sans-serif;
 
 }
 
@@ -157,6 +220,15 @@ input {
 
 button {
     margin-top:2rem;
+    margin-left:2rem;
+    background-color:#383636;
+    color:white;
+    border-radius:5px;
+    width:200px;
+    height:50px;
+    font-family: 'Open Sans Condensed', sans-serif;
+    cursor:pointer;
+
 }
 
 

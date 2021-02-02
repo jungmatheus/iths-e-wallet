@@ -3,11 +3,13 @@
         <CardTop/>
         <AddCardCard v-bind:cardNumber="transformedNumber"
         v-bind:cardName="transformedName"
-        v-bind:vld="transformedVld"/>
+        v-bind:vld="transformedVld"
+        v-bind:ccv="transformedCcv"/>
         <CardForm 
-         v-on:numberSent="numberSent"
+        v-on:numberSent="numberSent"
         v-on:nameSent="nameSent"
-         v-on:vldSent="vldSent"
+        v-on:vldSent="vldSent"
+        v-on:ccvSent="ccvSent"
          />
     </div>
 </template>
@@ -25,6 +27,7 @@ export default {
         transformedNumber: "",
         transformedName: "",
         transformedVld: "",
+        transformedCcv: "",
         temp: ""
     }},
 
@@ -47,6 +50,10 @@ export default {
 
         vldSent(payload) {
             this.transformedVld = payload;
+        },
+
+        ccvSent(payload) {
+            this.transformedCcv = payload;
         }
     }
 
@@ -58,6 +65,8 @@ export default {
 </script>
 
 <style scoped>
+
+
 
 
 </style>

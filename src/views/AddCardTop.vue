@@ -17,6 +17,11 @@ export default {
         display:flex;
         align-items:center;
         flex-direction:column;
+        font-family: 'Open Sans Condensed', sans-serif;
+    }
+
+    p{
+        color:grey;
     }
 
 </style>

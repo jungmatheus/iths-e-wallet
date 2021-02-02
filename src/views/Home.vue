@@ -2,9 +2,9 @@
     <div class="wrapper">
         <div class="main">
             <Top/>
-            <Maincard v-bind:mainCardPath="transCardPath" v-bind:switchMain="abc"/>
-            <CardStack v-on:exportPath="exportPath" />
-            <router-link to="/AddCard" tag="button">ADD A NEW CARD</router-link>
+            <Maincard v-bind:mainCardInfo="cardInfo" v-bind:cardSwitched="switched"/>
+            <CardStack v-on:switchMain="switchMain" />
+            <router-link to="/AddCard" tag="button">ADD CARD</router-link>
         </div>
     </div>
     
@@ -20,10 +20,12 @@ export default {
 
 
     data() { return {
-        
-        transCardPath: "",
-        abc: false
+
+        switched: false,
+        cardInfo: ""
     }},
+
+
 
     components: {
         Top: Top,
@@ -32,10 +34,11 @@ export default {
     },
 
     methods: {
-        exportPath(payload) {
-            this.transCardPath = payload;
-            this.abc = true;
-            console.log("alright")
+
+        switchMain(payload) {
+            
+            this.cardInfo = payload;
+            this.switched = true;
         }
     }
 
@@ -46,7 +49,11 @@ export default {
 
 <style scoped>
 
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap');
+
 div.main {
+    font-family: 'Open Sans Condensed', sans-serif;
     display:flex;
     flex-direction:column;
     align-items:center;
@@ -60,9 +67,18 @@ div.wrapper {
     display:flex;
     flex-direction:column;
     align-items:center;
-    background-color:grey;
-    border-style:solid;
-    border-color:grey;
+
+}
+
+button {
+    background-color:#383636;
+    color:white;
+    border-radius:5px;
+    width:200px;
+    height:50px;
+    font-family: 'Open Sans Condensed', sans-serif;
+    cursor:pointer;
+    
 }
 
 
